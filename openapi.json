@@ -1,0 +1,1676 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "API para proyecto BaHaGames Marketplace",
+      "description": "Esta API lleva las operaciones backend de este proyecto",
+      "contact": {
+        "name": "Raúl Pardo Zurita",
+        "url": "https://www.bahatech.cl",
+        "email": "bahamut@bahatech.cl"
+      },
+      "version": "V1"
+    },
+    "servers": [
+      {
+        "url": "https://www.bahatech.cl:8443",
+        "description": "Inferred Url"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Servicios del WS",
+        "description": "Desplegar para revisar los endpoints disponibles"
+      },
+      {
+        "name": "auth-controller",
+        "description": "Auth Controller"
+      },
+      {
+        "name": "publicacion-controller",
+        "description": "Publicacion Controller"
+      }
+    ],
+    "paths": {
+      "/baha_games_marketplace/authenticate": {
+        "post": {
+          "tags": [
+            "auth-controller"
+          ],
+          "summary": "generateAuthenticationToken",
+          "operationId": "generateAuthenticationTokenUsingPOST",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JwtRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/udata/modificar": {
+        "put": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+            ],
+          "tags": [
+            "auth-controller"
+          ],
+          "summary": "Modifica credenciales de un usuario",
+          "description": "Se debe proporcionar info de las credenciales como JSON",
+          "operationId": "modificarUsuarioUsingPUT",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModificarCredencialesRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ModificarCredencialesResponse"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/usuario/modificar": {
+        "put": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+            ], 
+          "tags": [
+            "auth-controller"
+          ],
+          "summary": "Modifica info de un usuario",
+          "description": "Se debe proporcionar info del usuario como JSON",
+          "operationId": "modificarUsuarioUsingPUT_1",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModificarUsuarioRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ModificarUsuarioResponse"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/usuario/{login}": {
+        "get": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+            ],  
+          "tags": [
+            "auth-controller"
+          ],
+          "summary": "Obtiene un usuario provisto el login",
+          "description": "Enviar por parámetros una login de usuario que exista",
+          "operationId": "obtenerUsuarioPorLoginUsingGET",
+          "parameters": [
+            {
+              "name": "login",
+              "in": "path",
+              "description": "login",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BuscarUsuarioLoginResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/usuariof/{id}": {
+        "get": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+            ],  
+          "tags": [
+            "auth-controller"
+          ],
+          "summary": "Obtiene un usuario provisto el id",
+          "description": "Enviar por parámetros un id de usuario que exista",
+          "operationId": "obtenerUsuarioPorIdUsingGET",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "id",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/BuscarUsuarioIdResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/usuarios/agregarUsuario": {
+        "post": {
+          "tags": [
+            "auth-controller"
+          ],
+          "summary": "agregarUsuario",
+          "operationId": "agregarUsuarioUsingPOST",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgregarUsuarioRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AgregarUsuarioResponse"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/favoritos/eliminar/{usuario}/{publicacion}": {
+        "delete": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+            ],  
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Elimina una publicación favorita de un usuario en el sistema",
+          "description": "Enviar por parámetros las id de usuario y publicación",
+          "operationId": "eliminarFavoritoUsingDELETE",
+          "parameters": [
+            {
+              "name": "usuario",
+              "in": "path",
+              "description": "ID del usuario",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            {
+              "name": "publicacion",
+              "in": "path",
+              "description": "ID de la publicaciœn",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/EliminarFavoritoResponse"
+                  }
+                }
+              }
+            },
+            "204": {
+              "description": "No Content"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/ganador/{id}": {
+        "get": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+            ],    
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Obtiene el ganador de una publicación",
+          "description": "Enviar por parámetros una ID de publicación que exista",
+          "operationId": "obtenerGanadorUsingGET",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "id",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ObtenerGanadorResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/interesados/cerrar": {
+        "put": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Cierra una venta",
+          "description": "Se debe proporcionar info de publicación e interesado como JSON",
+          "operationId": "cerrarVentaUsingPUT",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CerrarVentaRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/CerrarVentaResponse"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/item/modificar": {
+        "put": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],  
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Modifica info de una publicación",
+          "description": "Se debe proporcionar info de la publicación como JSON",
+          "operationId": "modificarItemUsingPUT",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModificarPublicacionRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ModificarPublicacionResponse"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/publicacion/adquisiciones/{id}": {
+        "get": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],  
+        "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Obtiene las adquisiciones provisto un id de usuario",
+          "description": "Enviar por parámetros una ID de usuario que exista",
+          "operationId": "obtenerAdquisicionesUsuarioUsingGET",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "id",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ObtenerAdquisicionesResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/publicacion/agregar": {
+        "post": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],          
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Agrega una publicacion al sistema",
+          "description": "Se debe proporcionar info del DRM como JSON",
+          "operationId": "agregarDRMUsingPOST",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgregarPublicacionRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AgregarPublicacionResponse"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/publicacion/agregar_favorito": {
+        "post": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],          
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Agrega a los favoritos de un usuario una publicación",
+          "description": "Se debe proporcionar el id de usuario y de publicación como JSON",
+          "operationId": "agregarFavoritoUsingPOST",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgregarFavoritoRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AgregarFavoritoResponse"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/publicacion/calificar": {
+        "post": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Califica una publicación",
+          "description": "Se debe proporcionar el id de usuario que califica, el id de publicación y la calificación, como JSON",
+          "operationId": "calificarPublicacionUsingPOST",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgregarCalificacionRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/AgregarCalificacionResponse"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/publicacion/deshabilitar": {
+        "put": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Deshabilita (elimina) una publicación del sistema",
+          "description": "Se debe proporcionar id de la publicación a deshabilitar",
+          "operationId": "deshabilitarUsingPUT",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeshabilitarPublicacionRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/DeshabilitarPublicacionResponse"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/publicacion/favoritos/{id}": {
+        "get": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],  
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Obtiene los favoritos provisto el id de usuario",
+          "description": "Enviar por parámetros una ID de usuario que exista",
+          "operationId": "obtenerFavsPorIdUsingGET",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "id",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ObtenerFavoritosResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/publicacion/get/{id}": {
+        "get": {
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Obtiene una publicación provisto el id",
+          "description": "Enviar por parámetros una ID de publicación que exista",
+          "operationId": "obtenerPublicacionPorIdUsingGET",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "id",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ObtenerPublicacionIdResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/publicacion/interesados/{id}": {
+        "get": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],  
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Obtiene los interesados provisto el id de publicación",
+          "description": "Enviar por parámetros una ID de publicación que exista",
+          "operationId": "obtenerInteresadosIdUsingGET",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "description": "id",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ObtenerInteresadosResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/publicacion/mostrar_interes": {
+        "post": {
+            "security": [
+                {
+                  "bearerAuth": []
+                }
+              ],
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Vincula un interesado a una publicación",
+          "description": "Se debe proporcionar el id de usuario y de publicación como JSON",
+          "operationId": "mostrarInteresUsingPOST",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MostrarInteresRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/MostrarInteresResponse"
+                  }
+                }
+              }
+            },
+            "201": {
+              "description": "Created"
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      },
+      "/baha_games_marketplace/publicaciones": {
+        "get": {
+          "tags": [
+            "publicacion-controller"
+          ],
+          "summary": "Obtiene todas las publicaciones",
+          "description": "No se necesitan parámetros u objetos de entrada",
+          "operationId": "obtenerPublicacionesUsingGET",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ObtenerPublicacionesResponse"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized"
+            },
+            "403": {
+              "description": "Forbidden"
+            },
+            "404": {
+              "description": "Not Found"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+              "type": "http",
+              "scheme": "bearer",
+              "bearerFormat": "JWT"
+            }
+          },        
+      "schemas": {
+        "Adquisicion": {
+          "title": "Adquisicion",
+          "type": "object",
+          "properties": {
+            "comprador": {
+              "type": "string"
+            },
+            "fechaCompra": {
+              "type": "string"
+            },
+            "idPublicacion": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "juego": {
+              "type": "string"
+            },
+            "vendedor": {
+              "type": "string"
+            }
+          }
+        },
+        "AgregarCalificacionRequest": {
+          "title": "AgregarCalificacionRequest",
+          "type": "object",
+          "properties": {
+            "estrellas": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "publicacion": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "usuario": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "AgregarCalificacionResponse": {
+          "title": "AgregarCalificacionResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "AgregarFavoritoRequest": {
+          "title": "AgregarFavoritoRequest",
+          "type": "object",
+          "properties": {
+            "publicacion": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "usuario": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "AgregarFavoritoResponse": {
+          "title": "AgregarFavoritoResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "AgregarPublicacionRequest": {
+          "title": "AgregarPublicacionRequest",
+          "type": "object",
+          "properties": {
+            "descripcion": {
+              "type": "string"
+            },
+            "estado": {
+              "type": "string"
+            },
+            "formato": {
+              "type": "string"
+            },
+            "imagen": {
+              "type": "string"
+            },
+            "juego": {
+              "type": "string"
+            },
+            "plataforma": {
+              "type": "string"
+            },
+            "precio": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "usuario": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "AgregarPublicacionResponse": {
+          "title": "AgregarPublicacionResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "AgregarUsuarioRequest": {
+          "title": "AgregarUsuarioRequest",
+          "type": "object",
+          "properties": {
+            "calle": {
+              "type": "string"
+            },
+            "casa": {
+              "type": "string"
+            },
+            "comuna": {
+              "type": "string"
+            },
+            "correo": {
+              "type": "string"
+            },
+            "edad": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "estado": {
+              "type": "string"
+            },
+            "fechaNacimiento": {
+              "type": "string"
+            },
+            "fono": {
+              "type": "string"
+            },
+            "nombre": {
+              "type": "string"
+            },
+            "numero": {
+              "type": "string"
+            },
+            "pass": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "rut": {
+              "type": "string"
+            },
+            "usuario": {
+              "type": "string"
+            }
+          }
+        },
+        "AgregarUsuarioResponse": {
+          "title": "AgregarUsuarioResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "BuscarUsuarioIdResponse": {
+          "title": "BuscarUsuarioIdResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            },
+            "usuario": {
+              "$ref": "#/components/schemas/Usuario"
+            }
+          }
+        },
+        "BuscarUsuarioLoginResponse": {
+          "title": "BuscarUsuarioLoginResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            },
+            "usuario": {
+              "$ref": "#/components/schemas/Usuario"
+            }
+          }
+        },
+        "CerrarVentaRequest": {
+          "title": "CerrarVentaRequest",
+          "type": "object",
+          "properties": {
+            "publicacion": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "usuario": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "CerrarVentaResponse": {
+          "title": "CerrarVentaResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "DeshabilitarPublicacionRequest": {
+          "title": "DeshabilitarPublicacionRequest",
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "DeshabilitarPublicacionResponse": {
+          "title": "DeshabilitarPublicacionResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "EliminarFavoritoResponse": {
+          "title": "EliminarFavoritoResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "Favorito": {
+          "title": "Favorito",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "type": "string"
+            },
+            "imagen": {
+              "type": "string"
+            },
+            "juego": {
+              "type": "string"
+            },
+            "publicacion": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "usuario": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "Ganador": {
+          "title": "Ganador",
+          "type": "object",
+          "properties": {
+            "esGanador": {
+              "type": "boolean"
+            },
+            "fechaCompra": {
+              "type": "string"
+            },
+            "idUsuario": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "nombre": {
+              "type": "string"
+            },
+            "publicacion": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "Interesado": {
+          "title": "Interesado",
+          "type": "object",
+          "properties": {
+            "comunaInteresado": {
+              "type": "string"
+            },
+            "correoInteresado": {
+              "type": "string"
+            },
+            "fechaPublicacion": {
+              "type": "string"
+            },
+            "fonoInteresado": {
+              "type": "string"
+            },
+            "formato": {
+              "type": "string"
+            },
+            "idInteresado": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "idPublicacion": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "idVendedor": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "interesado": {
+              "type": "string"
+            },
+            "plataforma": {
+              "type": "string"
+            },
+            "precio": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "publicacion": {
+              "type": "string"
+            },
+            "regionInteresado": {
+              "type": "string"
+            },
+            "vendedor": {
+              "type": "string"
+            }
+          }
+        },
+        "JwtRequest": {
+          "title": "JwtRequest",
+          "type": "object",
+          "properties": {
+            "password": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            }
+          }
+        },
+        "ModificarCredencialesRequest": {
+          "title": "ModificarCredencialesRequest",
+          "type": "object",
+          "properties": {
+            "correo": {
+              "type": "string"
+            },
+            "login": {
+              "type": "string"
+            },
+            "pass": {
+              "type": "string"
+            }
+          }
+        },
+        "ModificarCredencialesResponse": {
+          "title": "ModificarCredencialesResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "ModificarPublicacionRequest": {
+          "title": "ModificarPublicacionRequest",
+          "type": "object",
+          "properties": {
+            "formato": {
+              "type": "string"
+            },
+            "plataforma": {
+              "type": "string"
+            },
+            "publicacion": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "ModificarPublicacionResponse": {
+          "title": "ModificarPublicacionResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "ModificarUsuarioRequest": {
+          "title": "ModificarUsuarioRequest",
+          "type": "object",
+          "properties": {
+            "calle": {
+              "type": "string"
+            },
+            "casa": {
+              "type": "string"
+            },
+            "comuna": {
+              "type": "string"
+            },
+            "edad": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "fechaNacimiento": {
+              "type": "string"
+            },
+            "fono": {
+              "type": "string"
+            },
+            "imagen": {
+              "type": "string"
+            },
+            "login": {
+              "type": "string"
+            },
+            "nombre": {
+              "type": "string"
+            },
+            "numero": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "rut": {
+              "type": "string"
+            }
+          }
+        },
+        "ModificarUsuarioResponse": {
+          "title": "ModificarUsuarioResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "MostrarInteresRequest": {
+          "title": "MostrarInteresRequest",
+          "type": "object",
+          "properties": {
+            "publicacion": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "usuario": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "MostrarInteresResponse": {
+          "title": "MostrarInteresResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "ObtenerAdquisicionesResponse": {
+          "title": "ObtenerAdquisicionesResponse",
+          "type": "object",
+          "properties": {
+            "adquisiciones": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Adquisicion"
+              }
+            },
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            }
+          }
+        },
+        "ObtenerFavoritosResponse": {
+          "title": "ObtenerFavoritosResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            },
+            "favoritos": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Favorito"
+              }
+            }
+          }
+        },
+        "ObtenerGanadorResponse": {
+          "title": "ObtenerGanadorResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            },
+            "ganador": {
+              "$ref": "#/components/schemas/Ganador"
+            }
+          }
+        },
+        "ObtenerInteresadosResponse": {
+          "title": "ObtenerInteresadosResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            },
+            "interesados": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Interesado"
+              }
+            }
+          }
+        },
+        "ObtenerPublicacionIdResponse": {
+          "title": "ObtenerPublicacionIdResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            },
+            "publicacion": {
+              "$ref": "#/components/schemas/Publicacion"
+            }
+          }
+        },
+        "ObtenerPublicacionesResponse": {
+          "title": "ObtenerPublicacionesResponse",
+          "type": "object",
+          "properties": {
+            "estado": {
+              "$ref": "#/components/schemas/ResponseDetail"
+            },
+            "publicaciones": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Publicacion"
+              }
+            }
+          }
+        },
+        "Publicacion": {
+          "title": "Publicacion",
+          "type": "object",
+          "properties": {
+            "descripcion": {
+              "type": "string"
+            },
+            "estado": {
+              "type": "string"
+            },
+            "fechaCreacion": {
+              "type": "string"
+            },
+            "formato": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "imagen": {
+              "type": "string"
+            },
+            "juego": {
+              "type": "string"
+            },
+            "plataforma": {
+              "type": "string"
+            },
+            "precio": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "rating": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "usuario": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        },
+        "ResponseDetail": {
+          "title": "ResponseDetail",
+          "type": "object",
+          "properties": {
+            "codigo": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "detalle": {
+              "type": "string"
+            },
+            "mensaje": {
+              "type": "string"
+            }
+          }
+        },
+        "Usuario": {
+          "title": "Usuario",
+          "type": "object",
+          "properties": {
+            "calle": {
+              "type": "string"
+            },
+            "casa": {
+              "type": "string"
+            },
+            "comuna": {
+              "type": "string"
+            },
+            "correo": {
+              "type": "string"
+            },
+            "edad": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "estado": {
+              "type": "string"
+            },
+            "fechaCreacion": {
+              "type": "string"
+            },
+            "fechaNacimiento": {
+              "type": "string"
+            },
+            "fono": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "imagen": {
+              "type": "string"
+            },
+            "nombre": {
+              "type": "string"
+            },
+            "numero": {
+              "type": "string"
+            },
+            "pass": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "rut": {
+              "type": "string"
+            },
+            "sellerRating": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "usuario": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
